@@ -49,6 +49,13 @@ class storage final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::poll_message_response>> PrepareAsyncpoll_message(::grpc::ClientContext* context, const ::message_server_api::poll_message_request& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::poll_message_response>>(PrepareAsyncpoll_messageRaw(context, request, cq));
     }
+    virtual ::grpc::Status register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::message_server_api::register_client_response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::register_client_response>> Asyncregister_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::register_client_response>>(Asyncregister_clientRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::register_client_response>> PrepareAsyncregister_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::register_client_response>>(PrepareAsyncregister_clientRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -56,6 +63,8 @@ class storage final {
       virtual void add_message(::grpc::ClientContext* context, const ::message_server_api::add_message_request* request, ::message_server_api::add_message_response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void poll_message(::grpc::ClientContext* context, const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response, std::function<void(::grpc::Status)>) = 0;
       virtual void poll_message(::grpc::ClientContext* context, const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -65,6 +74,8 @@ class storage final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::add_message_response>* PrepareAsyncadd_messageRaw(::grpc::ClientContext* context, const ::message_server_api::add_message_request& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::poll_message_response>* Asyncpoll_messageRaw(::grpc::ClientContext* context, const ::message_server_api::poll_message_request& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::poll_message_response>* PrepareAsyncpoll_messageRaw(::grpc::ClientContext* context, const ::message_server_api::poll_message_request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::register_client_response>* Asyncregister_clientRaw(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::message_server_api::register_client_response>* PrepareAsyncregister_clientRaw(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -83,6 +94,13 @@ class storage final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::message_server_api::poll_message_response>> PrepareAsyncpoll_message(::grpc::ClientContext* context, const ::message_server_api::poll_message_request& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::message_server_api::poll_message_response>>(PrepareAsyncpoll_messageRaw(context, request, cq));
     }
+    ::grpc::Status register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::message_server_api::register_client_response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>> Asyncregister_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>>(Asyncregister_clientRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>> PrepareAsyncregister_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>>(PrepareAsyncregister_clientRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -90,6 +108,8 @@ class storage final {
       void add_message(::grpc::ClientContext* context, const ::message_server_api::add_message_request* request, ::message_server_api::add_message_response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void poll_message(::grpc::ClientContext* context, const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response, std::function<void(::grpc::Status)>) override;
       void poll_message(::grpc::ClientContext* context, const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response, std::function<void(::grpc::Status)>) override;
+      void register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -105,8 +125,11 @@ class storage final {
     ::grpc::ClientAsyncResponseReader< ::message_server_api::add_message_response>* PrepareAsyncadd_messageRaw(::grpc::ClientContext* context, const ::message_server_api::add_message_request& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::message_server_api::poll_message_response>* Asyncpoll_messageRaw(::grpc::ClientContext* context, const ::message_server_api::poll_message_request& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::message_server_api::poll_message_response>* PrepareAsyncpoll_messageRaw(::grpc::ClientContext* context, const ::message_server_api::poll_message_request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>* Asyncregister_clientRaw(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>* PrepareAsyncregister_clientRaw(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_add_message_;
     const ::grpc::internal::RpcMethod rpcmethod_poll_message_;
+    const ::grpc::internal::RpcMethod rpcmethod_register_client_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -116,6 +139,7 @@ class storage final {
     virtual ~Service();
     virtual ::grpc::Status add_message(::grpc::ServerContext* context, const ::message_server_api::add_message_request* request, ::message_server_api::add_message_response* response);
     virtual ::grpc::Status poll_message(::grpc::ServerContext* context, const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response);
+    virtual ::grpc::Status register_client(::grpc::ServerContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_add_message : public BaseClass {
@@ -157,7 +181,27 @@ class storage final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_add_message<WithAsyncMethod_poll_message<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_register_client : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_register_client() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_register_client() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status register_client(::grpc::ServerContext* /*context*/, const ::message_server_api::register_client_request* /*request*/, ::message_server_api::register_client_response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestregister_client(::grpc::ServerContext* context, ::message_server_api::register_client_request* request, ::grpc::ServerAsyncResponseWriter< ::message_server_api::register_client_response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_add_message<WithAsyncMethod_poll_message<WithAsyncMethod_register_client<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_add_message : public BaseClass {
    private:
@@ -212,7 +256,34 @@ class storage final {
     virtual ::grpc::ServerUnaryReactor* poll_message(
       ::grpc::CallbackServerContext* /*context*/, const ::message_server_api::poll_message_request* /*request*/, ::message_server_api::poll_message_response* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_add_message<WithCallbackMethod_poll_message<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_register_client : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_register_client() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::message_server_api::register_client_request, ::message_server_api::register_client_response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response) { return this->register_client(context, request, response); }));}
+    void SetMessageAllocatorFor_register_client(
+        ::grpc::MessageAllocator< ::message_server_api::register_client_request, ::message_server_api::register_client_response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::message_server_api::register_client_request, ::message_server_api::register_client_response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_register_client() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status register_client(::grpc::ServerContext* /*context*/, const ::message_server_api::register_client_request* /*request*/, ::message_server_api::register_client_response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* register_client(
+      ::grpc::CallbackServerContext* /*context*/, const ::message_server_api::register_client_request* /*request*/, ::message_server_api::register_client_response* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_add_message<WithCallbackMethod_poll_message<WithCallbackMethod_register_client<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_add_message : public BaseClass {
@@ -244,6 +315,23 @@ class storage final {
     }
     // disable synchronous version of this method
     ::grpc::Status poll_message(::grpc::ServerContext* /*context*/, const ::message_server_api::poll_message_request* /*request*/, ::message_server_api::poll_message_response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_register_client : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_register_client() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_register_client() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status register_client(::grpc::ServerContext* /*context*/, const ::message_server_api::register_client_request* /*request*/, ::message_server_api::register_client_response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -289,6 +377,26 @@ class storage final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_register_client : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_register_client() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_register_client() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status register_client(::grpc::ServerContext* /*context*/, const ::message_server_api::register_client_request* /*request*/, ::message_server_api::register_client_response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestregister_client(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_add_message : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -330,6 +438,28 @@ class storage final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* poll_message(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_register_client : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_register_client() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->register_client(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_register_client() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status register_client(::grpc::ServerContext* /*context*/, const ::message_server_api::register_client_request* /*request*/, ::message_server_api::register_client_response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* register_client(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -386,9 +516,36 @@ class storage final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status Streamedpoll_message(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::message_server_api::poll_message_request,::message_server_api::poll_message_response>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_add_message<WithStreamedUnaryMethod_poll_message<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_register_client : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_register_client() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::message_server_api::register_client_request, ::message_server_api::register_client_response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::message_server_api::register_client_request, ::message_server_api::register_client_response>* streamer) {
+                       return this->Streamedregister_client(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_register_client() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status register_client(::grpc::ServerContext* /*context*/, const ::message_server_api::register_client_request* /*request*/, ::message_server_api::register_client_response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streamedregister_client(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::message_server_api::register_client_request,::message_server_api::register_client_response>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_add_message<WithStreamedUnaryMethod_poll_message<WithStreamedUnaryMethod_register_client<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_add_message<WithStreamedUnaryMethod_poll_message<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_add_message<WithStreamedUnaryMethod_poll_message<WithStreamedUnaryMethod_register_client<Service > > > StreamedService;
 };
 
 }  // namespace message_server_api

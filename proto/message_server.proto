@@ -2,6 +2,14 @@ syntax = "proto3";
 
 package message_server_api;
 
+message register_client_request {
+	uint64 prefered_client_id = 1;
+}
+
+message register_client_response{
+	uint64 client_id = 1;
+}
+
 message add_message_request {
 	uint64 client_id = 1;
 	string text = 2;
@@ -24,4 +32,5 @@ message poll_message_response{
 service storage {
 	rpc add_message(add_message_request) returns (add_message_response) {}
 	rpc poll_message(poll_message_request) returns (poll_message_response) {}
+	rpc register_client(register_client_request) returns (register_client_response) {}
 }

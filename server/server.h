@@ -19,6 +19,9 @@ namespace net {
 
         virtual ::grpc::Status poll_message(::grpc::ServerContext* context, 
             const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response) override;
+
+        virtual ::grpc::Status register_client(::grpc::ServerContext* context, 
+            const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response) override;
     };
 
 }

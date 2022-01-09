@@ -24,6 +24,7 @@ namespace message_server_api {
 static const char* storage_method_names[] = {
   "/message_server_api.storage/add_message",
   "/message_server_api.storage/poll_message",
+  "/message_server_api.storage/register_client",
 };
 
 std::unique_ptr< storage::Stub> storage::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,6 +36,7 @@ std::unique_ptr< storage::Stub> storage::NewStub(const std::shared_ptr< ::grpc::
 storage::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_add_message_(storage_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_poll_message_(storage_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_register_client_(storage_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status storage::Stub::add_message(::grpc::ClientContext* context, const ::message_server_api::add_message_request& request, ::message_server_api::add_message_response* response) {
@@ -83,6 +85,29 @@ void storage::Stub::async::poll_message(::grpc::ClientContext* context, const ::
   return result;
 }
 
+::grpc::Status storage::Stub::register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::message_server_api::register_client_response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::message_server_api::register_client_request, ::message_server_api::register_client_response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_register_client_, context, request, response);
+}
+
+void storage::Stub::async::register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::message_server_api::register_client_request, ::message_server_api::register_client_response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_register_client_, context, request, response, std::move(f));
+}
+
+void storage::Stub::async::register_client(::grpc::ClientContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_register_client_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>* storage::Stub::PrepareAsyncregister_clientRaw(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::message_server_api::register_client_response, ::message_server_api::register_client_request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_register_client_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::message_server_api::register_client_response>* storage::Stub::Asyncregister_clientRaw(::grpc::ClientContext* context, const ::message_server_api::register_client_request& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncregister_clientRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 storage::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       storage_method_names[0],
@@ -104,6 +129,16 @@ storage::Service::Service() {
              ::message_server_api::poll_message_response* resp) {
                return service->poll_message(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      storage_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< storage::Service, ::message_server_api::register_client_request, ::message_server_api::register_client_response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](storage::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::message_server_api::register_client_request* req,
+             ::message_server_api::register_client_response* resp) {
+               return service->register_client(ctx, req, resp);
+             }, this)));
 }
 
 storage::Service::~Service() {
@@ -117,6 +152,13 @@ storage::Service::~Service() {
 }
 
 ::grpc::Status storage::Service::poll_message(::grpc::ServerContext* context, const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status storage::Service::register_client(::grpc::ServerContext* context, const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response) {
   (void) context;
   (void) request;
   (void) response;

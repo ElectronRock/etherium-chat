@@ -14,4 +14,10 @@ namespace net {
         return grpc::Status::OK;
     }
 
+    ::grpc::Status server::register_client(::grpc::ServerContext* context,
+        const ::message_server_api::register_client_request* request, ::message_server_api::register_client_response* response) {
+
+        return grpc::Status::OK;
+    }
+
 }

@@ -17,6 +17,30 @@
 
 PROTOBUF_PRAGMA_INIT_SEG
 namespace message_server_api {
+constexpr register_client_request::register_client_request(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : prefered_client_id_(PROTOBUF_ULONGLONG(0)){}
+struct register_client_requestDefaultTypeInternal {
+  constexpr register_client_requestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~register_client_requestDefaultTypeInternal() {}
+  union {
+    register_client_request _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT register_client_requestDefaultTypeInternal _register_client_request_default_instance_;
+constexpr register_client_response::register_client_response(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : client_id_(PROTOBUF_ULONGLONG(0)){}
+struct register_client_responseDefaultTypeInternal {
+  constexpr register_client_responseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~register_client_responseDefaultTypeInternal() {}
+  union {
+    register_client_response _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT register_client_responseDefaultTypeInternal _register_client_response_default_instance_;
 constexpr add_message_request::add_message_request(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : text_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
@@ -71,11 +95,23 @@ struct poll_message_responseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT poll_message_responseDefaultTypeInternal _poll_message_response_default_instance_;
 }  // namespace message_server_api
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_message_5fserver_2eproto[4];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_message_5fserver_2eproto[6];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_message_5fserver_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_message_5fserver_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_message_5fserver_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::message_server_api::register_client_request, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::message_server_api::register_client_request, prefered_client_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::message_server_api::register_client_response, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::message_server_api::register_client_response, client_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::message_server_api::add_message_request, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -105,13 +141,17 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_message_5fserver_2eproto::offs
   PROTOBUF_FIELD_OFFSET(::message_server_api::poll_message_response, client_id_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::message_server_api::add_message_request)},
-  { 7, -1, sizeof(::message_server_api::add_message_response)},
-  { 13, -1, sizeof(::message_server_api::poll_message_request)},
-  { 19, -1, sizeof(::message_server_api::poll_message_response)},
+  { 0, -1, sizeof(::message_server_api::register_client_request)},
+  { 6, -1, sizeof(::message_server_api::register_client_response)},
+  { 12, -1, sizeof(::message_server_api::add_message_request)},
+  { 19, -1, sizeof(::message_server_api::add_message_response)},
+  { 25, -1, sizeof(::message_server_api::poll_message_request)},
+  { 31, -1, sizeof(::message_server_api::poll_message_response)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::message_server_api::_register_client_request_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::message_server_api::_register_client_response_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::message_server_api::_add_message_request_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::message_server_api::_add_message_response_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::message_server_api::_poll_message_request_default_instance_),
@@ -120,23 +160,28 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_message_5fserver_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\024message_server.proto\022\022message_server_a"
-  "pi\"6\n\023add_message_request\022\021\n\tclient_id\030\001"
-  " \001(\004\022\014\n\004text\030\002 \001(\t\"*\n\024add_message_respon"
-  "se\022\022\n\nmessage_id\030\001 \001(\004\"6\n\024poll_message_r"
-  "equest\022\036\n\026last_polled_message_id\030\001 \001(\004\"L"
-  "\n\025poll_message_response\022\014\n\004text\030\001 \003(\t\022\022\n"
-  "\nmessage_id\030\002 \003(\004\022\021\n\tclient_id\030\003 \003(\0042\324\001\n"
-  "\007storage\022b\n\013add_message\022\'.message_server"
-  "_api.add_message_request\032(.message_serve"
-  "r_api.add_message_response\"\000\022e\n\014poll_mes"
-  "sage\022(.message_server_api.poll_message_r"
-  "equest\032).message_server_api.poll_message"
-  "_response\"\000b\006proto3"
+  "pi\"5\n\027register_client_request\022\032\n\022prefere"
+  "d_client_id\030\001 \001(\004\"-\n\030register_client_res"
+  "ponse\022\021\n\tclient_id\030\001 \001(\004\"6\n\023add_message_"
+  "request\022\021\n\tclient_id\030\001 \001(\004\022\014\n\004text\030\002 \001(\t"
+  "\"*\n\024add_message_response\022\022\n\nmessage_id\030\001"
+  " \001(\004\"6\n\024poll_message_request\022\036\n\026last_pol"
+  "led_message_id\030\001 \001(\004\"L\n\025poll_message_res"
+  "ponse\022\014\n\004text\030\001 \003(\t\022\022\n\nmessage_id\030\002 \003(\004\022"
+  "\021\n\tclient_id\030\003 \003(\0042\304\002\n\007storage\022b\n\013add_me"
+  "ssage\022\'.message_server_api.add_message_r"
+  "equest\032(.message_server_api.add_message_"
+  "response\"\000\022e\n\014poll_message\022(.message_ser"
+  "ver_api.poll_message_request\032).message_s"
+  "erver_api.poll_message_response\"\000\022n\n\017reg"
+  "ister_client\022+.message_server_api.regist"
+  "er_client_request\032,.message_server_api.r"
+  "egister_client_response\"\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_message_5fserver_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_message_5fserver_2eproto = {
-  false, false, 499, descriptor_table_protodef_message_5fserver_2eproto, "message_server.proto", 
-  &descriptor_table_message_5fserver_2eproto_once, nullptr, 0, 4,
+  false, false, 713, descriptor_table_protodef_message_5fserver_2eproto, "message_server.proto", 
+  &descriptor_table_message_5fserver_2eproto_once, nullptr, 0, 6,
   schemas, file_default_instances, TableStruct_message_5fserver_2eproto::offsets,
   file_level_metadata_message_5fserver_2eproto, file_level_enum_descriptors_message_5fserver_2eproto, file_level_service_descriptors_message_5fserver_2eproto,
 };
@@ -149,6 +194,384 @@ descriptor_table_message_5fserver_2eproto_metadata_getter(int index) {
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_message_5fserver_2eproto(&descriptor_table_message_5fserver_2eproto);
 namespace message_server_api {
+
+// ===================================================================
+
+class register_client_request::_Internal {
+ public:
+};
+
+register_client_request::register_client_request(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:message_server_api.register_client_request)
+}
+register_client_request::register_client_request(const register_client_request& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  prefered_client_id_ = from.prefered_client_id_;
+  // @@protoc_insertion_point(copy_constructor:message_server_api.register_client_request)
+}
+
+void register_client_request::SharedCtor() {
+prefered_client_id_ = PROTOBUF_ULONGLONG(0);
+}
+
+register_client_request::~register_client_request() {
+  // @@protoc_insertion_point(destructor:message_server_api.register_client_request)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void register_client_request::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void register_client_request::ArenaDtor(void* object) {
+  register_client_request* _this = reinterpret_cast< register_client_request* >(object);
+  (void)_this;
+}
+void register_client_request::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void register_client_request::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void register_client_request::Clear() {
+// @@protoc_insertion_point(message_clear_start:message_server_api.register_client_request)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  prefered_client_id_ = PROTOBUF_ULONGLONG(0);
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* register_client_request::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint64 prefered_client_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          prefered_client_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* register_client_request::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:message_server_api.register_client_request)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 prefered_client_id = 1;
+  if (this->prefered_client_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_prefered_client_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:message_server_api.register_client_request)
+  return target;
+}
+
+size_t register_client_request::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:message_server_api.register_client_request)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 prefered_client_id = 1;
+  if (this->prefered_client_id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_prefered_client_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void register_client_request::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:message_server_api.register_client_request)
+  GOOGLE_DCHECK_NE(&from, this);
+  const register_client_request* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<register_client_request>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:message_server_api.register_client_request)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:message_server_api.register_client_request)
+    MergeFrom(*source);
+  }
+}
+
+void register_client_request::MergeFrom(const register_client_request& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:message_server_api.register_client_request)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.prefered_client_id() != 0) {
+    _internal_set_prefered_client_id(from._internal_prefered_client_id());
+  }
+}
+
+void register_client_request::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:message_server_api.register_client_request)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void register_client_request::CopyFrom(const register_client_request& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:message_server_api.register_client_request)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool register_client_request::IsInitialized() const {
+  return true;
+}
+
+void register_client_request::InternalSwap(register_client_request* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(prefered_client_id_, other->prefered_client_id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata register_client_request::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class register_client_response::_Internal {
+ public:
+};
+
+register_client_response::register_client_response(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:message_server_api.register_client_response)
+}
+register_client_response::register_client_response(const register_client_response& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  client_id_ = from.client_id_;
+  // @@protoc_insertion_point(copy_constructor:message_server_api.register_client_response)
+}
+
+void register_client_response::SharedCtor() {
+client_id_ = PROTOBUF_ULONGLONG(0);
+}
+
+register_client_response::~register_client_response() {
+  // @@protoc_insertion_point(destructor:message_server_api.register_client_response)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void register_client_response::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void register_client_response::ArenaDtor(void* object) {
+  register_client_response* _this = reinterpret_cast< register_client_response* >(object);
+  (void)_this;
+}
+void register_client_response::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void register_client_response::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void register_client_response::Clear() {
+// @@protoc_insertion_point(message_clear_start:message_server_api.register_client_response)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  client_id_ = PROTOBUF_ULONGLONG(0);
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* register_client_response::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint64 client_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          client_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* register_client_response::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:message_server_api.register_client_response)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 client_id = 1;
+  if (this->client_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_client_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:message_server_api.register_client_response)
+  return target;
+}
+
+size_t register_client_response::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:message_server_api.register_client_response)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 client_id = 1;
+  if (this->client_id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_client_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void register_client_response::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:message_server_api.register_client_response)
+  GOOGLE_DCHECK_NE(&from, this);
+  const register_client_response* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<register_client_response>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:message_server_api.register_client_response)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:message_server_api.register_client_response)
+    MergeFrom(*source);
+  }
+}
+
+void register_client_response::MergeFrom(const register_client_response& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:message_server_api.register_client_response)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.client_id() != 0) {
+    _internal_set_client_id(from._internal_client_id());
+  }
+}
+
+void register_client_response::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:message_server_api.register_client_response)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void register_client_response::CopyFrom(const register_client_response& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:message_server_api.register_client_response)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool register_client_response::IsInitialized() const {
+  return true;
+}
+
+void register_client_response::InternalSwap(register_client_response* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(client_id_, other->client_id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata register_client_response::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
 
 // ===================================================================
 
@@ -1035,6 +1458,12 @@ void poll_message_response::InternalSwap(poll_message_response* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace message_server_api
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::message_server_api::register_client_request* Arena::CreateMaybeMessage< ::message_server_api::register_client_request >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::message_server_api::register_client_request >(arena);
+}
+template<> PROTOBUF_NOINLINE ::message_server_api::register_client_response* Arena::CreateMaybeMessage< ::message_server_api::register_client_response >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::message_server_api::register_client_response >(arena);
+}
 template<> PROTOBUF_NOINLINE ::message_server_api::add_message_request* Arena::CreateMaybeMessage< ::message_server_api::add_message_request >(Arena* arena) {
   return Arena::CreateMessageInternal< ::message_server_api::add_message_request >(arena);
 }

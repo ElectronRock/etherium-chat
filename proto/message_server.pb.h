@@ -46,7 +46,7 @@ struct TableStruct_message_5fserver_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -67,16 +67,298 @@ extern poll_message_requestDefaultTypeInternal _poll_message_request_default_ins
 class poll_message_response;
 struct poll_message_responseDefaultTypeInternal;
 extern poll_message_responseDefaultTypeInternal _poll_message_response_default_instance_;
+class register_client_request;
+struct register_client_requestDefaultTypeInternal;
+extern register_client_requestDefaultTypeInternal _register_client_request_default_instance_;
+class register_client_response;
+struct register_client_responseDefaultTypeInternal;
+extern register_client_responseDefaultTypeInternal _register_client_response_default_instance_;
 }  // namespace message_server_api
 PROTOBUF_NAMESPACE_OPEN
 template<> ::message_server_api::add_message_request* Arena::CreateMaybeMessage<::message_server_api::add_message_request>(Arena*);
 template<> ::message_server_api::add_message_response* Arena::CreateMaybeMessage<::message_server_api::add_message_response>(Arena*);
 template<> ::message_server_api::poll_message_request* Arena::CreateMaybeMessage<::message_server_api::poll_message_request>(Arena*);
 template<> ::message_server_api::poll_message_response* Arena::CreateMaybeMessage<::message_server_api::poll_message_response>(Arena*);
+template<> ::message_server_api::register_client_request* Arena::CreateMaybeMessage<::message_server_api::register_client_request>(Arena*);
+template<> ::message_server_api::register_client_response* Arena::CreateMaybeMessage<::message_server_api::register_client_response>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace message_server_api {
 
 // ===================================================================
+
+class register_client_request PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:message_server_api.register_client_request) */ {
+ public:
+  inline register_client_request() : register_client_request(nullptr) {}
+  virtual ~register_client_request();
+  explicit constexpr register_client_request(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  register_client_request(const register_client_request& from);
+  register_client_request(register_client_request&& from) noexcept
+    : register_client_request() {
+    *this = ::std::move(from);
+  }
+
+  inline register_client_request& operator=(const register_client_request& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline register_client_request& operator=(register_client_request&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const register_client_request& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const register_client_request* internal_default_instance() {
+    return reinterpret_cast<const register_client_request*>(
+               &_register_client_request_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(register_client_request& a, register_client_request& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(register_client_request* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(register_client_request* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline register_client_request* New() const final {
+    return CreateMaybeMessage<register_client_request>(nullptr);
+  }
+
+  register_client_request* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<register_client_request>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const register_client_request& from);
+  void MergeFrom(const register_client_request& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(register_client_request* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "message_server_api.register_client_request";
+  }
+  protected:
+  explicit register_client_request(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_message_5fserver_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPreferedClientIdFieldNumber = 1,
+  };
+  // uint64 prefered_client_id = 1;
+  void clear_prefered_client_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 prefered_client_id() const;
+  void set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_prefered_client_id() const;
+  void _internal_set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:message_server_api.register_client_request)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 prefered_client_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_message_5fserver_2eproto;
+};
+// -------------------------------------------------------------------
+
+class register_client_response PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:message_server_api.register_client_response) */ {
+ public:
+  inline register_client_response() : register_client_response(nullptr) {}
+  virtual ~register_client_response();
+  explicit constexpr register_client_response(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  register_client_response(const register_client_response& from);
+  register_client_response(register_client_response&& from) noexcept
+    : register_client_response() {
+    *this = ::std::move(from);
+  }
+
+  inline register_client_response& operator=(const register_client_response& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline register_client_response& operator=(register_client_response&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const register_client_response& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const register_client_response* internal_default_instance() {
+    return reinterpret_cast<const register_client_response*>(
+               &_register_client_response_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(register_client_response& a, register_client_response& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(register_client_response* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(register_client_response* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline register_client_response* New() const final {
+    return CreateMaybeMessage<register_client_response>(nullptr);
+  }
+
+  register_client_response* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<register_client_response>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const register_client_response& from);
+  void MergeFrom(const register_client_response& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(register_client_response* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "message_server_api.register_client_response";
+  }
+  protected:
+  explicit register_client_response(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_message_5fserver_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kClientIdFieldNumber = 1,
+  };
+  // uint64 client_id = 1;
+  void clear_client_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 client_id() const;
+  void set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_client_id() const;
+  void _internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:message_server_api.register_client_response)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 client_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_message_5fserver_2eproto;
+};
+// -------------------------------------------------------------------
 
 class add_message_request PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:message_server_api.add_message_request) */ {
@@ -121,7 +403,7 @@ class add_message_request PROTOBUF_FINAL :
                &_add_message_request_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(add_message_request& a, add_message_request& b) {
     a.Swap(&b);
@@ -276,7 +558,7 @@ class add_message_response PROTOBUF_FINAL :
                &_add_message_response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(add_message_response& a, add_message_response& b) {
     a.Swap(&b);
@@ -413,7 +695,7 @@ class poll_message_request PROTOBUF_FINAL :
                &_poll_message_request_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(poll_message_request& a, poll_message_request& b) {
     a.Swap(&b);
@@ -550,7 +832,7 @@ class poll_message_response PROTOBUF_FINAL :
                &_poll_message_response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(poll_message_response& a, poll_message_response& b) {
     a.Swap(&b);
@@ -716,6 +998,54 @@ class poll_message_response PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// register_client_request
+
+// uint64 prefered_client_id = 1;
+inline void register_client_request::clear_prefered_client_id() {
+  prefered_client_id_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_request::_internal_prefered_client_id() const {
+  return prefered_client_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_request::prefered_client_id() const {
+  // @@protoc_insertion_point(field_get:message_server_api.register_client_request.prefered_client_id)
+  return _internal_prefered_client_id();
+}
+inline void register_client_request::_internal_set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  prefered_client_id_ = value;
+}
+inline void register_client_request::set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_prefered_client_id(value);
+  // @@protoc_insertion_point(field_set:message_server_api.register_client_request.prefered_client_id)
+}
+
+// -------------------------------------------------------------------
+
+// register_client_response
+
+// uint64 client_id = 1;
+inline void register_client_response::clear_client_id() {
+  client_id_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_response::_internal_client_id() const {
+  return client_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_response::client_id() const {
+  // @@protoc_insertion_point(field_get:message_server_api.register_client_response.client_id)
+  return _internal_client_id();
+}
+inline void register_client_response::_internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  client_id_ = value;
+}
+inline void register_client_response::set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_client_id(value);
+  // @@protoc_insertion_point(field_set:message_server_api.register_client_response.client_id)
+}
+
+// -------------------------------------------------------------------
+
 // add_message_request
 
 // uint64 client_id = 1;
@@ -1022,6 +1352,10 @@ poll_message_response::mutable_client_id() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
