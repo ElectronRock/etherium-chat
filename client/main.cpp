@@ -16,10 +16,8 @@
 #include "client.h"
 
 int main(int argc, char* argv[]) {
-    net::client cli(
-        grpc::CreateChannel("localhost",
-            grpc::InsecureChannelCredentials())
-    );
+    net::client cli(grpc::CreateChannel(argv[1],grpc::InsecureChannelCredentials()),
+                    std::strtoul(argv[2], nullptr, 10));
 
     cli.run();
 
