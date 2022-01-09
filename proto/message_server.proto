@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package message_server_api;
+
+message add_message_request {
+	uint64 client_id = 1;
+	string text = 2;
+}
+
+message add_message_response{
+	uint64 message_id = 1;
+}
+
+message poll_message_request{
+	uint64 last_polled_message_id = 1; 
+}
+
+message poll_message_response{
+	repeated string text = 1;
+	repeated uint64 message_id = 2;
+	repeated uint64 client_id = 3;
+}
+
+service storage {
+	rpc add_message(add_message_request) returns (add_message_response) {}
+	rpc poll_message(poll_message_request) returns (poll_message_response) {}
+}
