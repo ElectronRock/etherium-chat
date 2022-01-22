@@ -9,7 +9,8 @@ namespace net {
         if(m_clients.find(request->client_id())!=m_clients.end())
         {
             response->set_message_id(m_storage.size());
-            m_storage[m_storage.size()] = message(request->client_id(), request->text());
+            m_storage.emplace_back(request->client_id(), request->text());
+            std::cout << "Message received from: " << request->client_id() <<" : " << request->text() << std::endl;
         }
         else
         {

@@ -20,7 +20,8 @@ message add_message_response{
 }
 
 message poll_message_request{
-	uint64 last_polled_message_id = 1; 
+    uint64 last_polled_message_id = 1;
+    uint64 client_id = 2;
 }
 
 message poll_message_response{

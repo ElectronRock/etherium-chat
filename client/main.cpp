@@ -16,10 +16,14 @@
 #include "client.h"
 
 int main(int argc, char* argv[]) {
-    net::client cli(grpc::CreateChannel(argv[1],grpc::InsecureChannelCredentials()),
-                    std::strtoul(argv[2], nullptr, 10));
+    if(argc == 3) {
+        net::client cli(grpc::CreateChannel(argv[1], grpc::InsecureChannelCredentials()),
+                        std::strtoul(argv[2], nullptr, 10));
 
-    cli.run();
-
+        cli.run();
+    }
+    else {
+        std::cout << "Incorrect arguments";
+    }
     return 0;
 }

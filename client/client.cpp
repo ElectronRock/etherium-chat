@@ -42,10 +42,10 @@ namespace net {
 
             auto size = poll_message_response.text().size();
             for(int i = 0; i < size; i++) {
-                std::cout << poll_message_response.client_id()[i];
-                std::cout << poll_message_response.text()[i];
+                std::cout << poll_message_response.client_id()[i] << std::endl;
+                std::cout << poll_message_response.text()[i] << std::endl;
+                m_last_polled_id = poll_message_response.message_id()[i];
             }
-
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }
