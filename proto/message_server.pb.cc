@@ -68,7 +68,8 @@ struct add_message_responseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT add_message_responseDefaultTypeInternal _add_message_response_default_instance_;
 constexpr poll_message_request::poll_message_request(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : last_polled_message_id_(PROTOBUF_ULONGLONG(0)){}
+  : last_polled_message_id_(PROTOBUF_ULONGLONG(0))
+  , client_id_(PROTOBUF_ULONGLONG(0)){}
 struct poll_message_requestDefaultTypeInternal {
   constexpr poll_message_requestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -131,6 +132,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_message_5fserver_2eproto::offs
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::message_server_api::poll_message_request, last_polled_message_id_),
+  PROTOBUF_FIELD_OFFSET(::message_server_api::poll_message_request, client_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::message_server_api::poll_message_response, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -146,7 +148,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 12, -1, sizeof(::message_server_api::add_message_request)},
   { 19, -1, sizeof(::message_server_api::add_message_response)},
   { 25, -1, sizeof(::message_server_api::poll_message_request)},
-  { 31, -1, sizeof(::message_server_api::poll_message_response)},
+  { 32, -1, sizeof(::message_server_api::poll_message_response)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -165,22 +167,23 @@ const char descriptor_table_protodef_message_5fserver_2eproto[] PROTOBUF_SECTION
   "ponse\022\021\n\tclient_id\030\001 \001(\004\"6\n\023add_message_"
   "request\022\021\n\tclient_id\030\001 \001(\004\022\014\n\004text\030\002 \001(\t"
   "\"*\n\024add_message_response\022\022\n\nmessage_id\030\001"
-  " \001(\004\"6\n\024poll_message_request\022\036\n\026last_pol"
-  "led_message_id\030\001 \001(\004\"L\n\025poll_message_res"
-  "ponse\022\014\n\004text\030\001 \003(\t\022\022\n\nmessage_id\030\002 \003(\004\022"
-  "\021\n\tclient_id\030\003 \003(\0042\304\002\n\007storage\022b\n\013add_me"
-  "ssage\022\'.message_server_api.add_message_r"
-  "equest\032(.message_server_api.add_message_"
-  "response\"\000\022e\n\014poll_message\022(.message_ser"
-  "ver_api.poll_message_request\032).message_s"
-  "erver_api.poll_message_response\"\000\022n\n\017reg"
-  "ister_client\022+.message_server_api.regist"
-  "er_client_request\032,.message_server_api.r"
-  "egister_client_response\"\000b\006proto3"
+  " \001(\004\"I\n\024poll_message_request\022\036\n\026last_pol"
+  "led_message_id\030\001 \001(\004\022\021\n\tclient_id\030\002 \001(\004\""
+  "L\n\025poll_message_response\022\014\n\004text\030\001 \003(\t\022\022"
+  "\n\nmessage_id\030\002 \003(\004\022\021\n\tclient_id\030\003 \003(\0042\304\002"
+  "\n\007storage\022b\n\013add_message\022\'.message_serve"
+  "r_api.add_message_request\032(.message_serv"
+  "er_api.add_message_response\"\000\022e\n\014poll_me"
+  "ssage\022(.message_server_api.poll_message_"
+  "request\032).message_server_api.poll_messag"
+  "e_response\"\000\022n\n\017register_client\022+.messag"
+  "e_server_api.register_client_request\032,.m"
+  "essage_server_api.register_client_respon"
+  "se\"\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_message_5fserver_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_message_5fserver_2eproto = {
-  false, false, 713, descriptor_table_protodef_message_5fserver_2eproto, "message_server.proto", 
+  false, false, 732, descriptor_table_protodef_message_5fserver_2eproto, "message_server.proto", 
   &descriptor_table_message_5fserver_2eproto_once, nullptr, 0, 6,
   schemas, file_default_instances, TableStruct_message_5fserver_2eproto::offsets,
   file_level_metadata_message_5fserver_2eproto, file_level_enum_descriptors_message_5fserver_2eproto, file_level_service_descriptors_message_5fserver_2eproto,
@@ -1004,12 +1007,17 @@ poll_message_request::poll_message_request(::PROTOBUF_NAMESPACE_ID::Arena* arena
 poll_message_request::poll_message_request(const poll_message_request& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  last_polled_message_id_ = from.last_polled_message_id_;
+  ::memcpy(&last_polled_message_id_, &from.last_polled_message_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&client_id_) -
+    reinterpret_cast<char*>(&last_polled_message_id_)) + sizeof(client_id_));
   // @@protoc_insertion_point(copy_constructor:message_server_api.poll_message_request)
 }
 
 void poll_message_request::SharedCtor() {
-last_polled_message_id_ = PROTOBUF_ULONGLONG(0);
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&last_polled_message_id_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&client_id_) -
+    reinterpret_cast<char*>(&last_polled_message_id_)) + sizeof(client_id_));
 }
 
 poll_message_request::~poll_message_request() {
@@ -1038,7 +1046,9 @@ void poll_message_request::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  last_polled_message_id_ = PROTOBUF_ULONGLONG(0);
+  ::memset(&last_polled_message_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&client_id_) -
+      reinterpret_cast<char*>(&last_polled_message_id_)) + sizeof(client_id_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1053,6 +1063,13 @@ const char* poll_message_request::_InternalParse(const char* ptr, ::PROTOBUF_NAM
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           last_polled_message_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint64 client_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          client_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1090,6 +1107,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_last_polled_message_id(), target);
   }
 
+  // uint64 client_id = 2;
+  if (this->client_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_client_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1111,6 +1134,13 @@ size_t poll_message_request::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_last_polled_message_id());
+  }
+
+  // uint64 client_id = 2;
+  if (this->client_id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_client_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1147,6 +1177,9 @@ void poll_message_request::MergeFrom(const poll_message_request& from) {
   if (from.last_polled_message_id() != 0) {
     _internal_set_last_polled_message_id(from._internal_last_polled_message_id());
   }
+  if (from.client_id() != 0) {
+    _internal_set_client_id(from._internal_client_id());
+  }
 }
 
 void poll_message_request::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1170,7 +1203,12 @@ bool poll_message_request::IsInitialized() const {
 void poll_message_request::InternalSwap(poll_message_request* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(last_polled_message_id_, other->last_polled_message_id_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(poll_message_request, client_id_)
+      + sizeof(poll_message_request::client_id_)
+      - PROTOBUF_FIELD_OFFSET(poll_message_request, last_polled_message_id_)>(
+          reinterpret_cast<char*>(&last_polled_message_id_),
+          reinterpret_cast<char*>(&other->last_polled_message_id_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata poll_message_request::GetMetadata() const {

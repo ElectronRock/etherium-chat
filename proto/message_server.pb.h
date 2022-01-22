@@ -766,6 +766,7 @@ class poll_message_request PROTOBUF_FINAL :
 
   enum : int {
     kLastPolledMessageIdFieldNumber = 1,
+    kClientIdFieldNumber = 2,
   };
   // uint64 last_polled_message_id = 1;
   void clear_last_polled_message_id();
@@ -776,6 +777,15 @@ class poll_message_request PROTOBUF_FINAL :
   void _internal_set_last_polled_message_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
+  // uint64 client_id = 2;
+  void clear_client_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 client_id() const;
+  void set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_client_id() const;
+  void _internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:message_server_api.poll_message_request)
  private:
   class _Internal;
@@ -784,6 +794,7 @@ class poll_message_request PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::uint64 last_polled_message_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 client_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_message_5fserver_2eproto;
 };
@@ -1175,6 +1186,26 @@ inline void poll_message_request::_internal_set_last_polled_message_id(::PROTOBU
 inline void poll_message_request::set_last_polled_message_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_last_polled_message_id(value);
   // @@protoc_insertion_point(field_set:message_server_api.poll_message_request.last_polled_message_id)
+}
+
+// uint64 client_id = 2;
+inline void poll_message_request::clear_client_id() {
+  client_id_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 poll_message_request::_internal_client_id() const {
+  return client_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 poll_message_request::client_id() const {
+  // @@protoc_insertion_point(field_get:message_server_api.poll_message_request.client_id)
+  return _internal_client_id();
+}
+inline void poll_message_request::_internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  client_id_ = value;
+}
+inline void poll_message_request::set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_client_id(value);
+  // @@protoc_insertion_point(field_set:message_server_api.poll_message_request.client_id)
 }
 
 // -------------------------------------------------------------------
