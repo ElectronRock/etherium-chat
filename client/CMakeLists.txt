@@ -4,6 +4,8 @@ project(client)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
+
 
 file(GLOB CLI_HEADERS
         *.h
@@ -15,7 +17,7 @@ file(GLOB CLI_SOURSES
         ${CMAKE_SOURCE_DIR}/proto/*.cc
 )
 
-add_executable(client ${CLI_HEADERS} ${CLI_SOURSES})
+add_executable(client ${CLI_HEADERS} ${CLI_SOURSES} TextBox.cpp TextBox.h)
 target_include_directories(client PRIVATE ${CMAKE_SOURCE_DIR})
 
-target_link_libraries(client grpc++)
+target_link_libraries(client grpc++ sfml-graphics)
