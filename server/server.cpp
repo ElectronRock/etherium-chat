@@ -23,9 +23,11 @@ namespace net {
         const ::message_server_api::poll_message_request* request, ::message_server_api::poll_message_response* response) {
         if(m_storage.size()>request->last_polled_message_id()) {
             for (int i = request->last_polled_message_id()+1; i < m_storage.size(); i++) {
-                response->add_client_id(m_storage[i].client_id);
-                response->add_message_id(i);
-                response->add_text(m_storage[i].msg_text);
+                if(request->client_id() != m_storage[i].client_id) {
+                    response->add_client_id(m_storage[i].client_id);
+                    response->add_message_id(i);
+                    response->add_text(m_storage[i].msg_text);
+                }
             }
         }
         return grpc::Status::OK;

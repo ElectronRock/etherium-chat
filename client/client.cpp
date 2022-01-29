@@ -31,6 +31,7 @@ namespace net {
 
             message_server_api::poll_message_request poll_message_request;
             poll_message_request.set_last_polled_message_id(m_last_polled_id);
+            poll_message_request.set_client_id(m_id);
             grpc::ClientContext poll_message_context;
             message_server_api::poll_message_response poll_message_response;
             m_polling_mutex.lock();
@@ -54,7 +55,7 @@ namespace net {
         std::string message_text;
         std::getline(std::cin, message_text);
         return message_text;
-        }
+    }
 
     bool client::send_message(std::string message_text) {
 
