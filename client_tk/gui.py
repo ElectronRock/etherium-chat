@@ -4,7 +4,7 @@ from tkinter import font
 from tkinter import ttk
  
 # GUI class for the chat
-class GUI:
+class gui:
     # constructor method
     def __init__(self):
        
@@ -207,4 +207,4 @@ class GUI:
             #break   
  
 # create a GUI class object
-g = GUI()
+g = gui()
