@@ -19,7 +19,7 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace message_server_api {
 constexpr register_client_request::register_client_request(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : prefered_client_id_(PROTOBUF_ULONGLONG(0)){}
+  : prefered_client_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct register_client_requestDefaultTypeInternal {
   constexpr register_client_requestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -31,7 +31,7 @@ struct register_client_requestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT register_client_requestDefaultTypeInternal _register_client_request_default_instance_;
 constexpr register_client_response::register_client_response(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : client_id_(PROTOBUF_ULONGLONG(0)){}
+  : client_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct register_client_responseDefaultTypeInternal {
   constexpr register_client_responseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -43,8 +43,8 @@ struct register_client_responseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT register_client_responseDefaultTypeInternal _register_client_response_default_instance_;
 constexpr add_message_request::add_message_request(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : text_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , client_id_(PROTOBUF_ULONGLONG(0)){}
+  : client_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , text_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct add_message_requestDefaultTypeInternal {
   constexpr add_message_requestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -68,8 +68,8 @@ struct add_message_responseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT add_message_responseDefaultTypeInternal _add_message_response_default_instance_;
 constexpr poll_message_request::poll_message_request(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : last_polled_message_id_(PROTOBUF_ULONGLONG(0))
-  , client_id_(PROTOBUF_ULONGLONG(0)){}
+  : client_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , last_polled_message_id_(PROTOBUF_ULONGLONG(0)){}
 struct poll_message_requestDefaultTypeInternal {
   constexpr poll_message_requestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -84,8 +84,7 @@ constexpr poll_message_response::poll_message_response(
   : text_()
   , message_id_()
   , _message_id_cached_byte_size_()
-  , client_id_()
-  , _client_id_cached_byte_size_(){}
+  , client_id_(){}
 struct poll_message_responseDefaultTypeInternal {
   constexpr poll_message_responseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -163,14 +162,14 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 const char descriptor_table_protodef_message_5fserver_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\024message_server.proto\022\022message_server_a"
   "pi\"5\n\027register_client_request\022\032\n\022prefere"
-  "d_client_id\030\001 \001(\004\"-\n\030register_client_res"
-  "ponse\022\021\n\tclient_id\030\001 \001(\004\"6\n\023add_message_"
-  "request\022\021\n\tclient_id\030\001 \001(\004\022\014\n\004text\030\002 \001(\t"
+  "d_client_id\030\001 \001(\t\"-\n\030register_client_res"
+  "ponse\022\021\n\tclient_id\030\001 \001(\t\"6\n\023add_message_"
+  "request\022\021\n\tclient_id\030\001 \001(\t\022\014\n\004text\030\002 \001(\t"
   "\"*\n\024add_message_response\022\022\n\nmessage_id\030\001"
   " \001(\004\"I\n\024poll_message_request\022\036\n\026last_pol"
-  "led_message_id\030\001 \001(\004\022\021\n\tclient_id\030\002 \001(\004\""
+  "led_message_id\030\001 \001(\004\022\021\n\tclient_id\030\002 \001(\t\""
   "L\n\025poll_message_response\022\014\n\004text\030\001 \003(\t\022\022"
-  "\n\nmessage_id\030\002 \003(\004\022\021\n\tclient_id\030\003 \003(\0042\304\002"
+  "\n\nmessage_id\030\002 \003(\004\022\021\n\tclient_id\030\003 \003(\t2\304\002"
   "\n\007storage\022b\n\013add_message\022\'.message_serve"
   "r_api.add_message_request\032(.message_serv"
   "er_api.add_message_response\"\000\022e\n\014poll_me"
@@ -213,12 +212,16 @@ register_client_request::register_client_request(::PROTOBUF_NAMESPACE_ID::Arena*
 register_client_request::register_client_request(const register_client_request& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  prefered_client_id_ = from.prefered_client_id_;
+  prefered_client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_prefered_client_id().empty()) {
+    prefered_client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_prefered_client_id(), 
+      GetArena());
+  }
   // @@protoc_insertion_point(copy_constructor:message_server_api.register_client_request)
 }
 
 void register_client_request::SharedCtor() {
-prefered_client_id_ = PROTOBUF_ULONGLONG(0);
+prefered_client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 register_client_request::~register_client_request() {
@@ -229,6 +232,7 @@ register_client_request::~register_client_request() {
 
 void register_client_request::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
+  prefered_client_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void register_client_request::ArenaDtor(void* object) {
@@ -247,7 +251,7 @@ void register_client_request::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  prefered_client_id_ = PROTOBUF_ULONGLONG(0);
+  prefered_client_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -258,10 +262,12 @@ const char* register_client_request::_InternalParse(const char* ptr, ::PROTOBUF_
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // uint64 prefered_client_id = 1;
+      // string prefered_client_id = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          prefered_client_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_prefered_client_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "message_server_api.register_client_request.prefered_client_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -293,10 +299,14 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 prefered_client_id = 1;
-  if (this->prefered_client_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_prefered_client_id(), target);
+  // string prefered_client_id = 1;
+  if (this->prefered_client_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_prefered_client_id().data(), static_cast<int>(this->_internal_prefered_client_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "message_server_api.register_client_request.prefered_client_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_prefered_client_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -315,10 +325,10 @@ size_t register_client_request::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 prefered_client_id = 1;
-  if (this->prefered_client_id() != 0) {
+  // string prefered_client_id = 1;
+  if (this->prefered_client_id().size() > 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_prefered_client_id());
   }
 
@@ -353,7 +363,7 @@ void register_client_request::MergeFrom(const register_client_request& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.prefered_client_id() != 0) {
+  if (from.prefered_client_id().size() > 0) {
     _internal_set_prefered_client_id(from._internal_prefered_client_id());
   }
 }
@@ -379,7 +389,7 @@ bool register_client_request::IsInitialized() const {
 void register_client_request::InternalSwap(register_client_request* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(prefered_client_id_, other->prefered_client_id_);
+  prefered_client_id_.Swap(&other->prefered_client_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata register_client_request::GetMetadata() const {
@@ -402,12 +412,16 @@ register_client_response::register_client_response(::PROTOBUF_NAMESPACE_ID::Aren
 register_client_response::register_client_response(const register_client_response& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  client_id_ = from.client_id_;
+  client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_client_id().empty()) {
+    client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_client_id(), 
+      GetArena());
+  }
   // @@protoc_insertion_point(copy_constructor:message_server_api.register_client_response)
 }
 
 void register_client_response::SharedCtor() {
-client_id_ = PROTOBUF_ULONGLONG(0);
+client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 register_client_response::~register_client_response() {
@@ -418,6 +432,7 @@ register_client_response::~register_client_response() {
 
 void register_client_response::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
+  client_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void register_client_response::ArenaDtor(void* object) {
@@ -436,7 +451,7 @@ void register_client_response::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  client_id_ = PROTOBUF_ULONGLONG(0);
+  client_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -447,10 +462,12 @@ const char* register_client_response::_InternalParse(const char* ptr, ::PROTOBUF
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // uint64 client_id = 1;
+      // string client_id = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          client_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_client_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "message_server_api.register_client_response.client_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -482,10 +499,14 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 client_id = 1;
-  if (this->client_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_client_id(), target);
+  // string client_id = 1;
+  if (this->client_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_client_id().data(), static_cast<int>(this->_internal_client_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "message_server_api.register_client_response.client_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_client_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -504,10 +525,10 @@ size_t register_client_response::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 client_id = 1;
-  if (this->client_id() != 0) {
+  // string client_id = 1;
+  if (this->client_id().size() > 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_client_id());
   }
 
@@ -542,7 +563,7 @@ void register_client_response::MergeFrom(const register_client_response& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.client_id() != 0) {
+  if (from.client_id().size() > 0) {
     _internal_set_client_id(from._internal_client_id());
   }
 }
@@ -568,7 +589,7 @@ bool register_client_response::IsInitialized() const {
 void register_client_response::InternalSwap(register_client_response* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(client_id_, other->client_id_);
+  client_id_.Swap(&other->client_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata register_client_response::GetMetadata() const {
@@ -591,18 +612,22 @@ add_message_request::add_message_request(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 add_message_request::add_message_request(const add_message_request& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_client_id().empty()) {
+    client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_client_id(), 
+      GetArena());
+  }
   text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_text().empty()) {
     text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_text(), 
       GetArena());
   }
-  client_id_ = from.client_id_;
   // @@protoc_insertion_point(copy_constructor:message_server_api.add_message_request)
 }
 
 void add_message_request::SharedCtor() {
+client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-client_id_ = PROTOBUF_ULONGLONG(0);
 }
 
 add_message_request::~add_message_request() {
@@ -613,6 +638,7 @@ add_message_request::~add_message_request() {
 
 void add_message_request::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
+  client_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   text_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -632,8 +658,8 @@ void add_message_request::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  client_id_.ClearToEmpty();
   text_.ClearToEmpty();
-  client_id_ = PROTOBUF_ULONGLONG(0);
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -644,10 +670,12 @@ const char* add_message_request::_InternalParse(const char* ptr, ::PROTOBUF_NAME
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // uint64 client_id = 1;
+      // string client_id = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          client_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_client_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "message_server_api.add_message_request.client_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -688,10 +716,14 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 client_id = 1;
-  if (this->client_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_client_id(), target);
+  // string client_id = 1;
+  if (this->client_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_client_id().data(), static_cast<int>(this->_internal_client_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "message_server_api.add_message_request.client_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_client_id(), target);
   }
 
   // string text = 2;
@@ -720,18 +752,18 @@ size_t add_message_request::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // string client_id = 1;
+  if (this->client_id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_client_id());
+  }
+
   // string text = 2;
   if (this->text().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_text());
-  }
-
-  // uint64 client_id = 1;
-  if (this->client_id() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_client_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -765,11 +797,11 @@ void add_message_request::MergeFrom(const add_message_request& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.client_id().size() > 0) {
+    _internal_set_client_id(from._internal_client_id());
+  }
   if (from.text().size() > 0) {
     _internal_set_text(from._internal_text());
-  }
-  if (from.client_id() != 0) {
-    _internal_set_client_id(from._internal_client_id());
   }
 }
 
@@ -794,8 +826,8 @@ bool add_message_request::IsInitialized() const {
 void add_message_request::InternalSwap(add_message_request* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  client_id_.Swap(&other->client_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   text_.Swap(&other->text_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(client_id_, other->client_id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata add_message_request::GetMetadata() const {
@@ -1007,17 +1039,18 @@ poll_message_request::poll_message_request(::PROTOBUF_NAMESPACE_ID::Arena* arena
 poll_message_request::poll_message_request(const poll_message_request& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&last_polled_message_id_, &from.last_polled_message_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&client_id_) -
-    reinterpret_cast<char*>(&last_polled_message_id_)) + sizeof(client_id_));
+  client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_client_id().empty()) {
+    client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_client_id(), 
+      GetArena());
+  }
+  last_polled_message_id_ = from.last_polled_message_id_;
   // @@protoc_insertion_point(copy_constructor:message_server_api.poll_message_request)
 }
 
 void poll_message_request::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&last_polled_message_id_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&client_id_) -
-    reinterpret_cast<char*>(&last_polled_message_id_)) + sizeof(client_id_));
+client_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+last_polled_message_id_ = PROTOBUF_ULONGLONG(0);
 }
 
 poll_message_request::~poll_message_request() {
@@ -1028,6 +1061,7 @@ poll_message_request::~poll_message_request() {
 
 void poll_message_request::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
+  client_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void poll_message_request::ArenaDtor(void* object) {
@@ -1046,9 +1080,8 @@ void poll_message_request::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&last_polled_message_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&client_id_) -
-      reinterpret_cast<char*>(&last_polled_message_id_)) + sizeof(client_id_));
+  client_id_.ClearToEmpty();
+  last_polled_message_id_ = PROTOBUF_ULONGLONG(0);
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1066,10 +1099,12 @@ const char* poll_message_request::_InternalParse(const char* ptr, ::PROTOBUF_NAM
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // uint64 client_id = 2;
+      // string client_id = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          client_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_client_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "message_server_api.poll_message_request.client_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1107,10 +1142,14 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_last_polled_message_id(), target);
   }
 
-  // uint64 client_id = 2;
-  if (this->client_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_client_id(), target);
+  // string client_id = 2;
+  if (this->client_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_client_id().data(), static_cast<int>(this->_internal_client_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "message_server_api.poll_message_request.client_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_client_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1129,18 +1168,18 @@ size_t poll_message_request::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // string client_id = 2;
+  if (this->client_id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_client_id());
+  }
+
   // uint64 last_polled_message_id = 1;
   if (this->last_polled_message_id() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_last_polled_message_id());
-  }
-
-  // uint64 client_id = 2;
-  if (this->client_id() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_client_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1174,11 +1213,11 @@ void poll_message_request::MergeFrom(const poll_message_request& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.client_id().size() > 0) {
+    _internal_set_client_id(from._internal_client_id());
+  }
   if (from.last_polled_message_id() != 0) {
     _internal_set_last_polled_message_id(from._internal_last_polled_message_id());
-  }
-  if (from.client_id() != 0) {
-    _internal_set_client_id(from._internal_client_id());
   }
 }
 
@@ -1203,12 +1242,8 @@ bool poll_message_request::IsInitialized() const {
 void poll_message_request::InternalSwap(poll_message_request* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(poll_message_request, client_id_)
-      + sizeof(poll_message_request::client_id_)
-      - PROTOBUF_FIELD_OFFSET(poll_message_request, last_polled_message_id_)>(
-          reinterpret_cast<char*>(&last_polled_message_id_),
-          reinterpret_cast<char*>(&other->last_polled_message_id_));
+  client_id_.Swap(&other->client_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(last_polled_message_id_, other->last_polled_message_id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata poll_message_request::GetMetadata() const {
@@ -1306,14 +1341,18 @@ const char* poll_message_response::_InternalParse(const char* ptr, ::PROTOBUF_NA
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // repeated uint64 client_id = 3;
+      // repeated string client_id = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt64Parser(_internal_mutable_client_id(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24) {
-          _internal_add_client_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-          CHK_(ptr);
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_client_id();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "message_server_api.poll_message_response.client_id"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1363,13 +1402,14 @@ failure:
     }
   }
 
-  // repeated uint64 client_id = 3;
-  {
-    int byte_size = _client_id_cached_byte_size_.load(std::memory_order_relaxed);
-    if (byte_size > 0) {
-      target = stream->WriteUInt64Packed(
-          3, _internal_client_id(), byte_size, target);
-    }
+  // repeated string client_id = 3;
+  for (int i = 0, n = this->_internal_client_id_size(); i < n; i++) {
+    const auto& s = this->_internal_client_id(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "message_server_api.poll_message_response.client_id");
+    target = stream->WriteString(3, s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1411,19 +1451,12 @@ size_t poll_message_response::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated uint64 client_id = 3;
-  {
-    size_t data_size = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      UInt64Size(this->client_id_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
-    }
-    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
-    _client_id_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+  // repeated string client_id = 3;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(client_id_.size());
+  for (int i = 0, n = client_id_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      client_id_.Get(i));
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {

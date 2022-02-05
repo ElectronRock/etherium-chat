@@ -201,13 +201,20 @@ class register_client_request PROTOBUF_FINAL :
   enum : int {
     kPreferedClientIdFieldNumber = 1,
   };
-  // uint64 prefered_client_id = 1;
+  // string prefered_client_id = 1;
   void clear_prefered_client_id();
-  ::PROTOBUF_NAMESPACE_ID::uint64 prefered_client_id() const;
-  void set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  const std::string& prefered_client_id() const;
+  void set_prefered_client_id(const std::string& value);
+  void set_prefered_client_id(std::string&& value);
+  void set_prefered_client_id(const char* value);
+  void set_prefered_client_id(const char* value, size_t size);
+  std::string* mutable_prefered_client_id();
+  std::string* release_prefered_client_id();
+  void set_allocated_prefered_client_id(std::string* prefered_client_id);
   private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_prefered_client_id() const;
-  void _internal_set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  const std::string& _internal_prefered_client_id() const;
+  void _internal_set_prefered_client_id(const std::string& value);
+  std::string* _internal_mutable_prefered_client_id();
   public:
 
   // @@protoc_insertion_point(class_scope:message_server_api.register_client_request)
@@ -217,7 +224,7 @@ class register_client_request PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 prefered_client_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr prefered_client_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_message_5fserver_2eproto;
 };
@@ -338,13 +345,20 @@ class register_client_response PROTOBUF_FINAL :
   enum : int {
     kClientIdFieldNumber = 1,
   };
-  // uint64 client_id = 1;
+  // string client_id = 1;
   void clear_client_id();
-  ::PROTOBUF_NAMESPACE_ID::uint64 client_id() const;
-  void set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  const std::string& client_id() const;
+  void set_client_id(const std::string& value);
+  void set_client_id(std::string&& value);
+  void set_client_id(const char* value);
+  void set_client_id(const char* value, size_t size);
+  std::string* mutable_client_id();
+  std::string* release_client_id();
+  void set_allocated_client_id(std::string* client_id);
   private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_client_id() const;
-  void _internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  const std::string& _internal_client_id() const;
+  void _internal_set_client_id(const std::string& value);
+  std::string* _internal_mutable_client_id();
   public:
 
   // @@protoc_insertion_point(class_scope:message_server_api.register_client_response)
@@ -354,7 +368,7 @@ class register_client_response PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 client_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr client_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_message_5fserver_2eproto;
 };
@@ -473,9 +487,25 @@ class add_message_request PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTextFieldNumber = 2,
     kClientIdFieldNumber = 1,
+    kTextFieldNumber = 2,
   };
+  // string client_id = 1;
+  void clear_client_id();
+  const std::string& client_id() const;
+  void set_client_id(const std::string& value);
+  void set_client_id(std::string&& value);
+  void set_client_id(const char* value);
+  void set_client_id(const char* value, size_t size);
+  std::string* mutable_client_id();
+  std::string* release_client_id();
+  void set_allocated_client_id(std::string* client_id);
+  private:
+  const std::string& _internal_client_id() const;
+  void _internal_set_client_id(const std::string& value);
+  std::string* _internal_mutable_client_id();
+  public:
+
   // string text = 2;
   void clear_text();
   const std::string& text() const;
@@ -492,15 +522,6 @@ class add_message_request PROTOBUF_FINAL :
   std::string* _internal_mutable_text();
   public:
 
-  // uint64 client_id = 1;
-  void clear_client_id();
-  ::PROTOBUF_NAMESPACE_ID::uint64 client_id() const;
-  void set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_client_id() const;
-  void _internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
-
   // @@protoc_insertion_point(class_scope:message_server_api.add_message_request)
  private:
   class _Internal;
@@ -508,8 +529,8 @@ class add_message_request PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr client_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr text_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 client_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_message_5fserver_2eproto;
 };
@@ -765,9 +786,25 @@ class poll_message_request PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kLastPolledMessageIdFieldNumber = 1,
     kClientIdFieldNumber = 2,
+    kLastPolledMessageIdFieldNumber = 1,
   };
+  // string client_id = 2;
+  void clear_client_id();
+  const std::string& client_id() const;
+  void set_client_id(const std::string& value);
+  void set_client_id(std::string&& value);
+  void set_client_id(const char* value);
+  void set_client_id(const char* value, size_t size);
+  std::string* mutable_client_id();
+  std::string* release_client_id();
+  void set_allocated_client_id(std::string* client_id);
+  private:
+  const std::string& _internal_client_id() const;
+  void _internal_set_client_id(const std::string& value);
+  std::string* _internal_mutable_client_id();
+  public:
+
   // uint64 last_polled_message_id = 1;
   void clear_last_polled_message_id();
   ::PROTOBUF_NAMESPACE_ID::uint64 last_polled_message_id() const;
@@ -777,15 +814,6 @@ class poll_message_request PROTOBUF_FINAL :
   void _internal_set_last_polled_message_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // uint64 client_id = 2;
-  void clear_client_id();
-  ::PROTOBUF_NAMESPACE_ID::uint64 client_id() const;
-  void set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_client_id() const;
-  void _internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
-
   // @@protoc_insertion_point(class_scope:message_server_api.poll_message_request)
  private:
   class _Internal;
@@ -793,8 +821,8 @@ class poll_message_request PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr client_id_;
   ::PROTOBUF_NAMESPACE_ID::uint64 last_polled_message_id_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 client_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_message_5fserver_2eproto;
 };
@@ -963,27 +991,29 @@ class poll_message_response PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
       mutable_message_id();
 
-  // repeated uint64 client_id = 3;
+  // repeated string client_id = 3;
   int client_id_size() const;
   private:
   int _internal_client_id_size() const;
   public:
   void clear_client_id();
+  const std::string& client_id(int index) const;
+  std::string* mutable_client_id(int index);
+  void set_client_id(int index, const std::string& value);
+  void set_client_id(int index, std::string&& value);
+  void set_client_id(int index, const char* value);
+  void set_client_id(int index, const char* value, size_t size);
+  std::string* add_client_id();
+  void add_client_id(const std::string& value);
+  void add_client_id(std::string&& value);
+  void add_client_id(const char* value);
+  void add_client_id(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& client_id() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_client_id();
   private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_client_id(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
-      _internal_client_id() const;
-  void _internal_add_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
-      _internal_mutable_client_id();
+  const std::string& _internal_client_id(int index) const;
+  std::string* _internal_add_client_id();
   public:
-  ::PROTOBUF_NAMESPACE_ID::uint64 client_id(int index) const;
-  void set_client_id(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value);
-  void add_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
-      client_id() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
-      mutable_client_id();
 
   // @@protoc_insertion_point(class_scope:message_server_api.poll_message_response)
  private:
@@ -995,8 +1025,7 @@ class poll_message_response PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> text_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 > message_id_;
   mutable std::atomic<int> _message_id_cached_byte_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 > client_id_;
-  mutable std::atomic<int> _client_id_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> client_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_message_5fserver_2eproto;
 };
@@ -1011,72 +1040,195 @@ class poll_message_response PROTOBUF_FINAL :
 #endif  // __GNUC__
 // register_client_request
 
-// uint64 prefered_client_id = 1;
+// string prefered_client_id = 1;
 inline void register_client_request::clear_prefered_client_id() {
-  prefered_client_id_ = PROTOBUF_ULONGLONG(0);
+  prefered_client_id_.ClearToEmpty();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_request::_internal_prefered_client_id() const {
-  return prefered_client_id_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_request::prefered_client_id() const {
+inline const std::string& register_client_request::prefered_client_id() const {
   // @@protoc_insertion_point(field_get:message_server_api.register_client_request.prefered_client_id)
   return _internal_prefered_client_id();
 }
-inline void register_client_request::_internal_set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  
-  prefered_client_id_ = value;
-}
-inline void register_client_request::set_prefered_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void register_client_request::set_prefered_client_id(const std::string& value) {
   _internal_set_prefered_client_id(value);
   // @@protoc_insertion_point(field_set:message_server_api.register_client_request.prefered_client_id)
+}
+inline std::string* register_client_request::mutable_prefered_client_id() {
+  // @@protoc_insertion_point(field_mutable:message_server_api.register_client_request.prefered_client_id)
+  return _internal_mutable_prefered_client_id();
+}
+inline const std::string& register_client_request::_internal_prefered_client_id() const {
+  return prefered_client_id_.Get();
+}
+inline void register_client_request::_internal_set_prefered_client_id(const std::string& value) {
+  
+  prefered_client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void register_client_request::set_prefered_client_id(std::string&& value) {
+  
+  prefered_client_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:message_server_api.register_client_request.prefered_client_id)
+}
+inline void register_client_request::set_prefered_client_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  prefered_client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:message_server_api.register_client_request.prefered_client_id)
+}
+inline void register_client_request::set_prefered_client_id(const char* value,
+    size_t size) {
+  
+  prefered_client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:message_server_api.register_client_request.prefered_client_id)
+}
+inline std::string* register_client_request::_internal_mutable_prefered_client_id() {
+  
+  return prefered_client_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* register_client_request::release_prefered_client_id() {
+  // @@protoc_insertion_point(field_release:message_server_api.register_client_request.prefered_client_id)
+  return prefered_client_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void register_client_request::set_allocated_prefered_client_id(std::string* prefered_client_id) {
+  if (prefered_client_id != nullptr) {
+    
+  } else {
+    
+  }
+  prefered_client_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), prefered_client_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:message_server_api.register_client_request.prefered_client_id)
 }
 
 // -------------------------------------------------------------------
 
 // register_client_response
 
-// uint64 client_id = 1;
+// string client_id = 1;
 inline void register_client_response::clear_client_id() {
-  client_id_ = PROTOBUF_ULONGLONG(0);
+  client_id_.ClearToEmpty();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_response::_internal_client_id() const {
-  return client_id_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 register_client_response::client_id() const {
+inline const std::string& register_client_response::client_id() const {
   // @@protoc_insertion_point(field_get:message_server_api.register_client_response.client_id)
   return _internal_client_id();
 }
-inline void register_client_response::_internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  
-  client_id_ = value;
-}
-inline void register_client_response::set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void register_client_response::set_client_id(const std::string& value) {
   _internal_set_client_id(value);
   // @@protoc_insertion_point(field_set:message_server_api.register_client_response.client_id)
+}
+inline std::string* register_client_response::mutable_client_id() {
+  // @@protoc_insertion_point(field_mutable:message_server_api.register_client_response.client_id)
+  return _internal_mutable_client_id();
+}
+inline const std::string& register_client_response::_internal_client_id() const {
+  return client_id_.Get();
+}
+inline void register_client_response::_internal_set_client_id(const std::string& value) {
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void register_client_response::set_client_id(std::string&& value) {
+  
+  client_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:message_server_api.register_client_response.client_id)
+}
+inline void register_client_response::set_client_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:message_server_api.register_client_response.client_id)
+}
+inline void register_client_response::set_client_id(const char* value,
+    size_t size) {
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:message_server_api.register_client_response.client_id)
+}
+inline std::string* register_client_response::_internal_mutable_client_id() {
+  
+  return client_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* register_client_response::release_client_id() {
+  // @@protoc_insertion_point(field_release:message_server_api.register_client_response.client_id)
+  return client_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void register_client_response::set_allocated_client_id(std::string* client_id) {
+  if (client_id != nullptr) {
+    
+  } else {
+    
+  }
+  client_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), client_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:message_server_api.register_client_response.client_id)
 }
 
 // -------------------------------------------------------------------
 
 // add_message_request
 
-// uint64 client_id = 1;
+// string client_id = 1;
 inline void add_message_request::clear_client_id() {
-  client_id_ = PROTOBUF_ULONGLONG(0);
+  client_id_.ClearToEmpty();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 add_message_request::_internal_client_id() const {
-  return client_id_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 add_message_request::client_id() const {
+inline const std::string& add_message_request::client_id() const {
   // @@protoc_insertion_point(field_get:message_server_api.add_message_request.client_id)
   return _internal_client_id();
 }
-inline void add_message_request::_internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  
-  client_id_ = value;
-}
-inline void add_message_request::set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void add_message_request::set_client_id(const std::string& value) {
   _internal_set_client_id(value);
   // @@protoc_insertion_point(field_set:message_server_api.add_message_request.client_id)
+}
+inline std::string* add_message_request::mutable_client_id() {
+  // @@protoc_insertion_point(field_mutable:message_server_api.add_message_request.client_id)
+  return _internal_mutable_client_id();
+}
+inline const std::string& add_message_request::_internal_client_id() const {
+  return client_id_.Get();
+}
+inline void add_message_request::_internal_set_client_id(const std::string& value) {
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void add_message_request::set_client_id(std::string&& value) {
+  
+  client_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:message_server_api.add_message_request.client_id)
+}
+inline void add_message_request::set_client_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:message_server_api.add_message_request.client_id)
+}
+inline void add_message_request::set_client_id(const char* value,
+    size_t size) {
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:message_server_api.add_message_request.client_id)
+}
+inline std::string* add_message_request::_internal_mutable_client_id() {
+  
+  return client_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* add_message_request::release_client_id() {
+  // @@protoc_insertion_point(field_release:message_server_api.add_message_request.client_id)
+  return client_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void add_message_request::set_allocated_client_id(std::string* client_id) {
+  if (client_id != nullptr) {
+    
+  } else {
+    
+  }
+  client_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), client_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:message_server_api.add_message_request.client_id)
 }
 
 // string text = 2;
@@ -1188,24 +1340,65 @@ inline void poll_message_request::set_last_polled_message_id(::PROTOBUF_NAMESPAC
   // @@protoc_insertion_point(field_set:message_server_api.poll_message_request.last_polled_message_id)
 }
 
-// uint64 client_id = 2;
+// string client_id = 2;
 inline void poll_message_request::clear_client_id() {
-  client_id_ = PROTOBUF_ULONGLONG(0);
+  client_id_.ClearToEmpty();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 poll_message_request::_internal_client_id() const {
-  return client_id_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 poll_message_request::client_id() const {
+inline const std::string& poll_message_request::client_id() const {
   // @@protoc_insertion_point(field_get:message_server_api.poll_message_request.client_id)
   return _internal_client_id();
 }
-inline void poll_message_request::_internal_set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  
-  client_id_ = value;
-}
-inline void poll_message_request::set_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void poll_message_request::set_client_id(const std::string& value) {
   _internal_set_client_id(value);
   // @@protoc_insertion_point(field_set:message_server_api.poll_message_request.client_id)
+}
+inline std::string* poll_message_request::mutable_client_id() {
+  // @@protoc_insertion_point(field_mutable:message_server_api.poll_message_request.client_id)
+  return _internal_mutable_client_id();
+}
+inline const std::string& poll_message_request::_internal_client_id() const {
+  return client_id_.Get();
+}
+inline void poll_message_request::_internal_set_client_id(const std::string& value) {
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void poll_message_request::set_client_id(std::string&& value) {
+  
+  client_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:message_server_api.poll_message_request.client_id)
+}
+inline void poll_message_request::set_client_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:message_server_api.poll_message_request.client_id)
+}
+inline void poll_message_request::set_client_id(const char* value,
+    size_t size) {
+  
+  client_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:message_server_api.poll_message_request.client_id)
+}
+inline std::string* poll_message_request::_internal_mutable_client_id() {
+  
+  return client_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* poll_message_request::release_client_id() {
+  // @@protoc_insertion_point(field_release:message_server_api.poll_message_request.client_id)
+  return client_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void poll_message_request::set_allocated_client_id(std::string* client_id) {
+  if (client_id != nullptr) {
+    
+  } else {
+    
+  }
+  client_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), client_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:message_server_api.poll_message_request.client_id)
 }
 
 // -------------------------------------------------------------------
@@ -1333,7 +1526,7 @@ poll_message_response::mutable_message_id() {
   return _internal_mutable_message_id();
 }
 
-// repeated uint64 client_id = 3;
+// repeated string client_id = 3;
 inline int poll_message_response::_internal_client_id_size() const {
   return client_id_.size();
 }
@@ -1343,41 +1536,68 @@ inline int poll_message_response::client_id_size() const {
 inline void poll_message_response::clear_client_id() {
   client_id_.Clear();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 poll_message_response::_internal_client_id(int index) const {
+inline std::string* poll_message_response::add_client_id() {
+  // @@protoc_insertion_point(field_add_mutable:message_server_api.poll_message_response.client_id)
+  return _internal_add_client_id();
+}
+inline const std::string& poll_message_response::_internal_client_id(int index) const {
   return client_id_.Get(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 poll_message_response::client_id(int index) const {
+inline const std::string& poll_message_response::client_id(int index) const {
   // @@protoc_insertion_point(field_get:message_server_api.poll_message_response.client_id)
   return _internal_client_id(index);
 }
-inline void poll_message_response::set_client_id(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  client_id_.Set(index, value);
+inline std::string* poll_message_response::mutable_client_id(int index) {
+  // @@protoc_insertion_point(field_mutable:message_server_api.poll_message_response.client_id)
+  return client_id_.Mutable(index);
+}
+inline void poll_message_response::set_client_id(int index, const std::string& value) {
   // @@protoc_insertion_point(field_set:message_server_api.poll_message_response.client_id)
+  client_id_.Mutable(index)->assign(value);
 }
-inline void poll_message_response::_internal_add_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  client_id_.Add(value);
+inline void poll_message_response::set_client_id(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:message_server_api.poll_message_response.client_id)
+  client_id_.Mutable(index)->assign(std::move(value));
 }
-inline void poll_message_response::add_client_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_add_client_id(value);
+inline void poll_message_response::set_client_id(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  client_id_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:message_server_api.poll_message_response.client_id)
+}
+inline void poll_message_response::set_client_id(int index, const char* value, size_t size) {
+  client_id_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:message_server_api.poll_message_response.client_id)
+}
+inline std::string* poll_message_response::_internal_add_client_id() {
+  return client_id_.Add();
+}
+inline void poll_message_response::add_client_id(const std::string& value) {
+  client_id_.Add()->assign(value);
   // @@protoc_insertion_point(field_add:message_server_api.poll_message_response.client_id)
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
-poll_message_response::_internal_client_id() const {
-  return client_id_;
+inline void poll_message_response::add_client_id(std::string&& value) {
+  client_id_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:message_server_api.poll_message_response.client_id)
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
+inline void poll_message_response::add_client_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  client_id_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:message_server_api.poll_message_response.client_id)
+}
+inline void poll_message_response::add_client_id(const char* value, size_t size) {
+  client_id_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:message_server_api.poll_message_response.client_id)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 poll_message_response::client_id() const {
   // @@protoc_insertion_point(field_list:message_server_api.poll_message_response.client_id)
-  return _internal_client_id();
+  return client_id_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
-poll_message_response::_internal_mutable_client_id() {
-  return &client_id_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 poll_message_response::mutable_client_id() {
   // @@protoc_insertion_point(field_mutable_list:message_server_api.poll_message_response.client_id)
-  return _internal_mutable_client_id();
+  return &client_id_;
 }
 
 #ifdef __GNUC__
