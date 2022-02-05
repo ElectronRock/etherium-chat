@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include <unordered_map>
+
 #include <unordered_set>
 #include "proto/message_server.grpc.pb.h"
 
@@ -28,16 +28,16 @@ namespace net {
     private:
 
         struct message final {
-            message(unsigned int u = 0u, std::string&& s = "")
-              : client_id(u), msg_text(std::move(s)) {}
-            unsigned int client_id;
+            message(std::string id = "", std::string s = "")
+              : client_id(std::move(id)), msg_text(std::move(s)) {}
+            std::string client_id;
             std::string msg_text;
         };
 
-        std::string generate_id(const std::string& prefered_id);
+        std::string generate_id(const std::string& prefered_id) const;
+
         std::vector<message> m_storage;
-        std::unordered_map<unsigned, std::string> m_clients;
-        std::unordered_set<std::string> m_clientSet;
+        std::unordered_set<std::string> m_clients;
     };
 
 }

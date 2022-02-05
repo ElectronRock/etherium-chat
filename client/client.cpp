@@ -6,9 +6,9 @@ namespace net {
 
     client::client(
             std::shared_ptr<grpc::Channel> message_service_channel,
-            unsigned client_id)
+            std::string client_id)
         : m_message_service(message_server_api::storage::NewStub(message_service_channel))
-        , m_id(client_id){
+        , m_id(std::move(client_id)) {
 
     }
 
@@ -16,7 +16,7 @@ namespace net {
         register_client(m_id);
         m_polling_thread = std::thread (
                 [this]{ polling_task(); }
-                );
+        );
         for (;;) {
             auto&& message_text = read_message();
             if(!message_text.empty())
@@ -74,15 +74,13 @@ namespace net {
         return status.ok();
     }
 
-
-    unsigned client::register_client(unsigned prefered_id) {
+    std::string client::register_client(const std::string& prefered_id) {
         message_server_api::register_client_request request;
         request.set_prefered_client_id(prefered_id);
         grpc::ClientContext context;
         message_server_api::register_client_response response;
         auto&& status = m_message_service->register_client(&context, request, &response);
-        return status.ok() ? response.client_id() : 0;
+        return status.ok() ? response.client_id() : "unregistered";
     }
-
 
 }

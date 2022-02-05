@@ -18,25 +18,21 @@ namespace net {
 
     class client final  {
     public:
-        client(std::shared_ptr<grpc::Channel> message_service_channel, unsigned client_id);
+        client(std::shared_ptr<grpc::Channel> message_service_channel, std::string client_id);
 
         ~client() = default;
-
-        void polling_task();
-
-        std::string read_message();
-        bool send_message(std::string message_text);
-
         void run();
 
-
     private:
-        unsigned register_client(unsigned prefered_id);
+        void polling_task();
+        bool send_message(std::string message_text);
+        std::string register_client(const std::string& prefered_id);
+        std::string read_message();
 
         std::thread m_polling_thread;
         std::mutex m_polling_mutex;
         std::unique_ptr<message_server_api::storage::Stub> m_message_service;
-        unsigned m_id;
+        std::string m_id;
         unsigned m_last_polled_id = 0;
         bool isActive = true;
     };

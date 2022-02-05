@@ -15,7 +15,7 @@
 int main(int argc, char* argv[]) {
     if(argc == 3) {
         net::client cli(grpc::CreateChannel(argv[1], grpc::InsecureChannelCredentials()),
-                        std::strtoul(argv[2], nullptr, 10));
+                        argv[2]);
 
         cli.run();
     }

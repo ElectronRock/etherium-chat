@@ -5,14 +5,11 @@ namespace net {
 
     ::grpc::Status server::add_message(::grpc::ServerContext* context,
         const ::message_server_api::add_message_request* request, ::message_server_api::add_message_response* response) {
-        if(m_clients.find(request->client_id()) != m_clients.end())
-        {
+        if(m_clients.find(request->client_id()) != m_clients.end()) {
             response->set_message_id(m_storage.size());
             m_storage.emplace_back(request->client_id(), request->text());
             std::cout << "Message received from: " << request->client_id() <<" : " << request->text() << std::endl;
-        }
-        else
-        {
+        } else {
             response->set_message_id(0);
         }
         return grpc::Status::OK;
@@ -37,14 +34,14 @@ namespace net {
         auto&& id = request->prefered_client_id();
         auto&& unique_id = generate_id(id);
         response->set_client_id(unique_id);
-        m_clients.emplace(m_clientSet.size(), unique_id);
-        m_clientSet.emplace(std::move(unique_id));
+        m_clients.emplace(std::move(unique_id));
         return grpc::Status::OK;
     }
 
     std::string server::generate_id(const std::string& preferred_id) const {
-        if (m_clientSet.count(preferred_id) == 0) 
+        if (m_clients.count(preferred_id) == 0) 
             return preferred_id;
+
         std::string res = preferred_id;
         std::random_device rd;
         std::mt19937 rng(rd());
@@ -52,7 +49,7 @@ namespace net {
         for (;;) {
             const auto random_integer = uni(rng);
             auto&& asStr = std::to_string(random_integer);
-            if (m_clientSet.count(res + asStr) == 0) {
+            if (m_clients.count(res + asStr) == 0) {
                 res += asStr;
                 break;
             }
