@@ -22,7 +22,7 @@ class cli:
         for i in range(0, len(response.text)):
             messages.append((response.client_id[i], response.text[i]))
             self.last_message_id = response.message_id[i]
-        pass
+        return messages
         
     def register(self, name):
         request = message_server_pb2.register_client_request(prefered_client_id=name)

@@ -2,12 +2,13 @@ import threading
 from tkinter import *
 from tkinter import font
 from tkinter import ttk
- 
+from cli import cli
 # GUI class for the chat
 class gui:
     # constructor method
     def __init__(self):
        
+        self.cli = cli()
         # chat window which is currently hidden
         self.Window = Tk()
         self.Window.withdraw()
@@ -74,16 +75,18 @@ class gui:
         self.go = Button(self.login,
                          text = "CONTINUE",
                          font = "Helvetica 14 bold",
-                         command = lambda: self.goAhead(self.entryName.get()))
+                         command = lambda: self.goAhead(self.entryName.get(), self.entryHost.get()))
          
         self.go.place(relx = 0.4,
                       rely = 0.55)
+        self.Window.bind('<Return>', self.returnHandler)
         self.Window.mainloop()
- 
-    def goAhead(self, name):
+    def goAhead(self, name, host):
         self.login.destroy()
         self.layout(name)
-         
+        
+        self.cli.initialize(name, host)
+        self.name = name
         # the thread to receive messages
         rcv = threading.Thread(target=self.receive)
         rcv.start()
@@ -155,7 +158,7 @@ class gui:
                                 font = "Helvetica 10 bold",
                                 width = 20,
                                 bg = "#ABB2B9",
-                                command = lambda : self.sendButton(self.entryMsg.get()))
+                                command = lambda : self.sendButton())
          
         self.buttonMsg.place(relx = 0.77,
                              rely = 0.008,
@@ -176,35 +179,44 @@ class gui:
          
         self.textCons.config(state = DISABLED)
  
-    # function to basically start the thread for sending messages
-    def sendButton(self, msg):
+    def addMessage(self, name, message):
+        self.textCons.config(state = NORMAL)
+        self.textCons.insert(END, name+"\n"+message+"\n\n")
         self.textCons.config(state = DISABLED)
-        self.msg=msg
+        self.textCons.see(END)
+ 
+    # function to basically start the thread for sending messages
+    def sendButton(self):
+        self.textCons.config(state = DISABLED)
+        self.msg=self.entryMsg.get()
         self.entryMsg.delete(0, END)
         snd= threading.Thread(target = self.sendMessage)
+        self.addMessage(self.name, self.msg) 
         snd.start()
  
     # function to receive messages
     def receive(self):
         while True:
-            try:
-                print("Try")
+                try:
                 # insert messages to text box
-                #self.textCons.config(state = NORMAL)
-                #self.textCons.insert(END, message+"\n\n"
-                #self.textCons.config(state = DISABLED)
-                #self.textCons.see(END)
-            except:
+                    messages = self.cli.poll()
+                    for message in messages:
+                        self.addMessage(message[0], message[1])
+                except:
                 # an error will be printed on the command line or console if there's an error
-                print("An error occured!")
-                break
+                    print("An error occured!")
+                    break
          
     # function to send messages
     def sendMessage(self):
         self.textCons.config(state=DISABLED)
-        #while True:
-              
-            #break   
- 
+        while True:
+            try:
+                self.cli.send(self.msg)
+                break
+            except:
+                print("AN ERROR OCCURED!")
+    def returnHandler(self, event):
+        self.sendButton()
 # create a GUI class object
 g = gui()

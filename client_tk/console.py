@@ -1,4 +1,7 @@
 import cli
 
 c = cli.cli()
-c.initialize("George", "localhost")
+name = input("Login: ")
+adress = input("Adress: ")
+c.initialize(name, adress)
+c.send("test string")
